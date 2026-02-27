@@ -14,7 +14,7 @@ Features:
 • Shows current page details
 • Allows dynamic title change
 • Navigation controls (reload, redirect, back, forward)
-• Dynamic background color based on screen width and device detection
+• Dynamic background color based on screen width
 All CSS and JavaScript are embedded in this single file.
 -->
 
@@ -22,12 +22,15 @@ All CSS and JavaScript are embedded in this single file.
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- THIS FIXES YOUR PHONE WIDTH -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Browser Environment Dashboard</title>
 
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #e6e6e6;
         margin: 0;
         padding: 40px;
         transition: background-color 0.4s ease;
@@ -141,15 +144,14 @@ function goForward() {
     history.forward();
 }
 
-/* UPDATED BACKGROUND DETECTION */
+/* ORIGINAL INSTRUCTOR RULES */
 function updateBackground() {
     let width = window.innerWidth;
-    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
-    if (isMobile) {
-        document.body.style.backgroundColor = "blue";   // Always blue on phones
+    if (width < 600) {
+        document.body.style.backgroundColor = "blue";   // Mobile
     } 
-    else if (width >= 768 && width < 992) {
+    else if (width >= 600 && width <= 991) {
         document.body.style.backgroundColor = "green";  // Tablet
     } 
     else {
