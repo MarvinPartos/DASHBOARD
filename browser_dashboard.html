@@ -1,7 +1,7 @@
 <!--
 README:
 Browser Environment Dashboard
-This project demonstrates the use of JavaScript Browser Objects including:
+This activity demonstrates the use of JavaScript Browser Objects:
 - navigator
 - screen
 - document
@@ -9,75 +9,82 @@ This project demonstrates the use of JavaScript Browser Objects including:
 - history
 - window
 
-It displays browser information, page details, navigation controls,
-and dynamically changes background color based on screen width.
-All CSS and JavaScript are embedded in this single HTML file.
+Features:
+• Displays browser and screen information
+• Shows current page details
+• Allows dynamic title change
+• Navigation controls (reload, redirect, back, forward)
+• Dynamic background color based on screen width
+All CSS and JavaScript are embedded in this single file.
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Browser Environment Dashboard</title>
+<meta charset="UTF-8">
+<title>Browser Environment Dashboard</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.4s ease;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e6e6e6;
+        margin: 0;
+        padding: 40px;
+        transition: background-color 0.4s ease;
+    }
 
-        header {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-        }
+    .profile-box {
+        background-color: #d9d9d9;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 30px;
+    }
 
-        .section {
-            padding: 20px;
-            margin: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.1);
-        }
+    .section-box {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+    }
 
-        button {
-            padding: 8px 12px;
-            margin: 5px 5px 5px 0;
-            cursor: pointer;
-        }
+    h1 {
+        margin-top: 0;
+    }
 
-        h2 {
-            margin-top: 0;
-        }
-    </style>
+    button {
+        padding: 6px 10px;
+        margin: 5px 5px 5px 0;
+        cursor: pointer;
+    }
+</style>
 </head>
 
 <body>
 
-<!-- ================= PROFILE HEADER ================= -->
-<header>
+<!-- ================= PROFILE SECTION ================= -->
+<div class="profile-box">
     <h1>Student Profile</h1>
+
     <p><strong>Complete Name:</strong> Marvin V. Partos</p>
     <p><strong>Sex:</strong> Male</p>
-    <p><strong>Address:</strong> Capitol Site, Philippines</p>
-    <p><strong>Course, Year, Section:</strong> BSIT 2D</p>
+    <p><strong>Address:</strong> Zone 3, Binanuahan, Lagonoy, Camarines Sur</p>
+    <p><strong>Course / Year / Section:</strong> BSIT 2-D</p>
     <p><strong>Name of School:</strong> Partido State University</p>
-    <p><strong>Semester & Academic Year:</strong> 2nd Semester AY 2025–2026</p>
-    <p><strong>Subject Code & Title:</strong> Web Systems and Technologies</p>
-    <p><strong>Subject Instructor:</strong> (Enter Instructor Name)</p>
-</header>
+    <p><strong>Semester & AY:</strong> 2nd Semester, AY 2025–2026</p>
+    <p><strong>Course Code & Title:</strong> PF2 – Event Driven Programming</p>
+    <p><strong>Instructor:</strong> Arjay F. Abio</p>
+</div>
 
 <!-- ================= PART A ================= -->
-<div class="section">
+<div class="section-box">
     <h2>Part A: Browser Information</h2>
     <p id="browserInfo"></p>
 </div>
 
 <!-- ================= PART B ================= -->
-<div class="section">
+<div class="section-box">
     <h2>Part B: Page Information & Controls</h2>
+
     <p><strong>Current URL:</strong> <span id="currentURL"></span></p>
     <p><strong>Hostname:</strong> <span id="hostname"></span></p>
     <p><strong>Page Title:</strong> <span id="pageTitle"></span></p>
@@ -86,7 +93,7 @@ All CSS and JavaScript are embedded in this single HTML file.
 </div>
 
 <!-- ================= PART C ================= -->
-<div class="section">
+<div class="section-box">
     <h2>Part C: Navigation Controls</h2>
 
     <button onclick="reloadPage()">Reload Page</button>
@@ -97,11 +104,11 @@ All CSS and JavaScript are embedded in this single HTML file.
 
 <script>
 /* =============================
-   PART A: DISPLAY BROWSER INFO
+   PART A: BROWSER INFORMATION
 ============================= */
 function displayBrowserInfo() {
     let info = `
-        Browser: ${navigator.appName} ${navigator.appVersion} <br>
+        Browser Name & Version: ${navigator.appName} ${navigator.appVersion} <br>
         Platform (OS): ${navigator.platform} <br>
         Java Enabled: ${navigator.javaEnabled()} <br>
         Screen Resolution: ${screen.width} x ${screen.height} <br>
@@ -113,7 +120,7 @@ function displayBrowserInfo() {
 }
 
 /* =============================
-   PART B: PAGE INFO
+   PART B: PAGE INFORMATION
 ============================= */
 function displayPageInfo() {
     document.getElementById("currentURL").textContent = location.href;
@@ -166,7 +173,7 @@ function updateBackground() {
 }
 
 /* =============================
-   INITIALIZE
+   INITIAL LOAD
 ============================= */
 window.onload = function() {
     displayBrowserInfo();
