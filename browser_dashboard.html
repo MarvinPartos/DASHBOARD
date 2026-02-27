@@ -1,0 +1,182 @@
+<!--
+README:
+Browser Environment Dashboard
+This project demonstrates the use of JavaScript Browser Objects including:
+- navigator
+- screen
+- document
+- location
+- history
+- window
+
+It displays browser information, page details, navigation controls,
+and dynamically changes background color based on screen width.
+All CSS and JavaScript are embedded in this single HTML file.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Environment Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.4s ease;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+
+        .section {
+            padding: 20px;
+            margin: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px 5px 5px 0;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= PROFILE HEADER ================= -->
+<header>
+    <h1>Student Profile</h1>
+    <p><strong>Complete Name:</strong> Marvin V. Partos</p>
+    <p><strong>Sex:</strong> Male</p>
+    <p><strong>Address:</strong> Capitol Site, Philippines</p>
+    <p><strong>Course, Year, Section:</strong> BSIT 2D</p>
+    <p><strong>Name of School:</strong> Partido State University</p>
+    <p><strong>Semester & Academic Year:</strong> 2nd Semester AY 2025–2026</p>
+    <p><strong>Subject Code & Title:</strong> Web Systems and Technologies</p>
+    <p><strong>Subject Instructor:</strong> (Enter Instructor Name)</p>
+</header>
+
+<!-- ================= PART A ================= -->
+<div class="section">
+    <h2>Part A: Browser Information</h2>
+    <p id="browserInfo"></p>
+</div>
+
+<!-- ================= PART B ================= -->
+<div class="section">
+    <h2>Part B: Page Information & Controls</h2>
+    <p><strong>Current URL:</strong> <span id="currentURL"></span></p>
+    <p><strong>Hostname:</strong> <span id="hostname"></span></p>
+    <p><strong>Page Title:</strong> <span id="pageTitle"></span></p>
+
+    <button onclick="changeTitle()">Change Page Title</button>
+</div>
+
+<!-- ================= PART C ================= -->
+<div class="section">
+    <h2>Part C: Navigation Controls</h2>
+
+    <button onclick="reloadPage()">Reload Page</button>
+    <button onclick="redirectPage()">Go to Example.com</button>
+    <button onclick="goBack()">Back</button>
+    <button onclick="goForward()">Forward</button>
+</div>
+
+<script>
+/* =============================
+   PART A: DISPLAY BROWSER INFO
+============================= */
+function displayBrowserInfo() {
+    let info = `
+        Browser: ${navigator.appName} ${navigator.appVersion} <br>
+        Platform (OS): ${navigator.platform} <br>
+        Java Enabled: ${navigator.javaEnabled()} <br>
+        Screen Resolution: ${screen.width} x ${screen.height} <br>
+        Available Screen Size: ${screen.availWidth} x ${screen.availHeight} <br>
+        Color Depth: ${screen.colorDepth} bits
+    `;
+
+    document.getElementById("browserInfo").innerHTML = info;
+}
+
+/* =============================
+   PART B: PAGE INFO
+============================= */
+function displayPageInfo() {
+    document.getElementById("currentURL").textContent = location.href;
+    document.getElementById("hostname").textContent = location.hostname;
+    document.getElementById("pageTitle").textContent = document.title;
+}
+
+function changeTitle() {
+    let newTitle = prompt("Enter new page title:");
+    if (newTitle) {
+        document.title = newTitle;
+        document.getElementById("pageTitle").textContent = newTitle;
+    }
+}
+
+/* =============================
+   PART C: NAVIGATION CONTROLS
+============================= */
+function reloadPage() {
+    location.reload();
+}
+
+function redirectPage() {
+    location.href = "https://www.example.com";
+}
+
+function goBack() {
+    history.back();
+}
+
+function goForward() {
+    history.forward();
+}
+
+/* =============================
+   PART D: DYNAMIC BACKGROUND
+============================= */
+function updateBackground() {
+    let width = window.innerWidth;
+
+    if (width < 600) {
+        document.body.style.backgroundColor = "blue";
+    } 
+    else if (width >= 600 && width <= 991) {
+        document.body.style.backgroundColor = "green";
+    } 
+    else {
+        document.body.style.backgroundColor = "orange";
+    }
+}
+
+/* =============================
+   INITIALIZE
+============================= */
+window.onload = function() {
+    displayBrowserInfo();
+    displayPageInfo();
+    updateBackground();
+};
+
+window.onresize = updateBackground;
+
+</script>
+
+</body>
+</html>
